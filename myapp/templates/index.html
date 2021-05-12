@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <h4>Главная</h4>
+  <h5>Пользователи:</h5>
+  {% for user in users %}
+    <a href="{% url 'dialog' pk=user.pk %}">{{ user }}</a>
+  {% endfor %}
+{% endblock %}

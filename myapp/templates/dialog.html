@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <a href={% url 'index' %}>На главную</a>
+  <h4>Диалог с {{ author }}</h4>
+  {% for msg in messages %}
+
+    {% ifchanged %}
+    <p>{{ msg.author }}</p>
+    {% endifchanged %}
+
+    {{ msg.text }}<br>
+
+  {% endfor %}
+  <form action="{% url 'send_message' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="user" maxlength="500" required="" id="id_user" value={{ author.pk }}>
+    <input type="text" name="text" maxlength="500" required="" id="id_text">
+    <input type="submit" placeholder="adga">
+</form>
+{% endblock %}
